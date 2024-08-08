@@ -128,6 +128,6 @@ jobs:
           key: ${{ secrets.REMOTE_PRIVATE_KEY }} # ec2 instance pem key
           port: ${{ secrets.REMOTE_SSH_PORT }} # 접속포트
           script: | # 실행할 스크립트
-            echo test
+            /home/ubuntu/scripts/rolling-update.sh
+#            echo test
 #            cd /home/ubuntu/scripts
-#            ./rolling-update.sh
