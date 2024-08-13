@@ -9,7 +9,6 @@ import java.math.BigDecimal;
 @Builder
 @AllArgsConstructor
 public class SensorValues {
-    private final Long id;
 
     private final boolean hall;
 
@@ -26,7 +25,7 @@ public class SensorValues {
     private final BigDecimal current;
 
     //전압
-    private final BigDecimal Voltage;
+    private final BigDecimal voltage;
 
     //모터 드라이버 속도
     private final int motorSpeed;
