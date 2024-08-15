@@ -23,26 +23,52 @@ public class Sensor {
     generator = "SENSOR_SEQ_GENERATOR")
     private Long id;
 
-    private boolean hall;
+    // 홀센서 rpm
+    @Column(precision = 3, scale = 2)
+    private BigDecimal hallRpm;
 
-    //자이로 x
-    @Column(precision = 10, scale = 2)
-    private BigDecimal gyroscopeX;
+    //자이로 가속도 x
+    @Column(precision = 3, scale = 2)
+    private BigDecimal gyroAccelerationX;
 
-    //자이로 y
-    @Column(precision = 10, scale = 2)
-    private BigDecimal gyroscopeY;
+    //자이로 가속도 y
+    @Column(precision = 3, scale = 2)
+    private BigDecimal gyroAccelerationY;
+
+    //자이로 가속도 z
+    @Column(precision = 3, scale = 2)
+    private BigDecimal gyroAccelerationZ;
+
+    //자이로 각속도 x
+    @Column(precision = 3, scale = 2)
+    private BigDecimal gyroRotationX;
+
+    //자이로 각속도 y
+    @Column(precision = 3, scale = 2)
+    private BigDecimal gyroRotationY;
+
+    //자이로 각속도 z
+    @Column(precision = 3, scale = 2)
+    private BigDecimal gyroRotationZ;
+
+    // gps 위도
+    @Column(precision = 9, scale = 6)
+    private BigDecimal gpsLatitude;
+
+    // gps 경도
+    @Column(precision = 9, scale = 6)
+    private BigDecimal gpsLongitude;
 
     //온도
     @Column(precision = 3, scale = 1)
     private BigDecimal temperature;
 
     //전류
-    @Column(precision = 2, scale = 1)
+    @Column(precision = 4, scale = 1)
     private BigDecimal current;
 
     //전압
-    @Column(precision = 2, scale = 1)
+    @Column(precision = 4, scale = 2)
     private BigDecimal voltage;
 
     //모터 드라이버 속도
@@ -55,14 +81,20 @@ public class Sensor {
 
     public static Sensor from(SensorValues sensorValues, LocalDateTime createdAt) {
         return Sensor.builder()
-                .hall(sensorValues.isHall())
-                .gyroscopeX(sensorValues.getGyroscopeX())
-                .gyroscopeY(sensorValues.getGyroscopeY())
+                .hallRpm(sensorValues.getHallRpm())
+                .gyroAccelerationX(sensorValues.getGyroAccelerationX())
+                .gyroAccelerationY(sensorValues.getGyroAccelerationY())
+                .gyroAccelerationZ(sensorValues.getGyroAccelerationZ())
+                .gyroRotationX(sensorValues.getGyroRotationY())
+                .gyroRotationY(sensorValues.getGyroRotationY())
+                .gyroRotationZ(sensorValues.getGyroRotationZ())
+                .gpsLatitude(sensorValues.getGpsLatitude())
+                .gpsLongitude(sensorValues.getGpsLongitude())
                 .temperature(sensorValues.getTemperature())
                 .current(sensorValues.getCurrent())
                 .voltage(sensorValues.getVoltage())
-                .motorSpeed(sensorValues.getMotorSpeed())
-                .motorDirection(sensorValues.isMotorDirection())
+//                .motorSpeed(sensorValues.getMotorSpeed())
+//                .motorDirection(sensorValues.isMotorDirection())
                 .createdAt(createdAt)
                 .build();
     }
