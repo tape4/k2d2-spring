@@ -22,7 +22,7 @@ public class Sensor {
     private Long id;
 
     // 홀센서 rpm
-    @Column(precision = 3, scale = 2)
+    @Column(precision = 6, scale = 2)
     private BigDecimal hallRpm;
 
     //자이로 가속도 x
