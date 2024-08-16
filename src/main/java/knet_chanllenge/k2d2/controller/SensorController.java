@@ -23,5 +23,4 @@ public class SensorController {
                 .ok()
                 .body(true);
     }
-
 }

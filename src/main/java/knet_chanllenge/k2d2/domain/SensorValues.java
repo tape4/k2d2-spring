@@ -1,10 +1,10 @@
 package knet_chanllenge.k2d2.domain;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.persistence.Column;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Getter
 @Builder
@@ -56,8 +56,14 @@ public class SensorValues {
     private final BigDecimal current;
 
     //전압
-    @Schema(description = "전압 센서", example = "12.34", type = "string")
+    @Schema(description = "전압 센서", example = "12.342", type = "string")
     private final BigDecimal voltage;
+
+    //사진 url
+    @Schema(description = "사진 주소", example = "http://61.252.59.24:51821/sensor/~", type = "string")
+    private final String url;
+
+    private final LocalDateTime createdAt;
 
     //모터 드라이버 속도
 //    private final int motorSpeed;

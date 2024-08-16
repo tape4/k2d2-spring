@@ -1,15 +1,13 @@
 package knet_chanllenge.k2d2.domain;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
+@Getter
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
@@ -60,15 +58,15 @@ public class Sensor {
     private BigDecimal gpsLongitude;
 
     //온도
-    @Column(precision = 3, scale = 1)
+    @Column(precision = 4, scale = 2)
     private BigDecimal temperature;
 
     //전류
-    @Column(precision = 4, scale = 1)
+    @Column(precision = 8, scale = 5)
     private BigDecimal current;
 
     //전압
-    @Column(precision = 4, scale = 2)
+    @Column(precision = 8, scale = 5)
     private BigDecimal voltage;
 
     //모터 드라이버 속도
