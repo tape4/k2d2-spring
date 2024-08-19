@@ -26,31 +26,31 @@ public class Sensor {
     private BigDecimal hallRpm;
 
     //자이로 가속도 x
-    @Column(precision = 3, scale = 2)
+    @Column(precision = 5, scale = 3)
     private BigDecimal gyroAccelerationX;
 
     //자이로 가속도 y
-    @Column(precision = 3, scale = 2)
+    @Column(precision = 5, scale = 3)
     private BigDecimal gyroAccelerationY;
 
     //자이로 가속도 z
-    @Column(precision = 3, scale = 2)
+    @Column(precision = 5, scale = 3)
     private BigDecimal gyroAccelerationZ;
 
     //자이로 각속도 x
-    @Column(precision = 3, scale = 2)
+    @Column(precision = 5, scale = 3)
     private BigDecimal gyroRotationX;
 
     //자이로 각속도 y
-    @Column(precision = 3, scale = 2)
+    @Column(precision = 5, scale = 3)
     private BigDecimal gyroRotationY;
 
     //자이로 각속도 z
-    @Column(precision = 3, scale = 2)
+    @Column(precision = 5, scale = 3)
     private BigDecimal gyroRotationZ;
 
     // gps 위도
-    @Column(precision = 9, scale = 6)
+    @Column(precision = 8, scale = 6)
     private BigDecimal gpsLatitude;
 
     // gps 경도
@@ -58,15 +58,15 @@ public class Sensor {
     private BigDecimal gpsLongitude;
 
     //온도
-    @Column(precision = 4, scale = 2)
+    @Column(precision = 5, scale = 2)
     private BigDecimal temperature;
 
     //전류
-    @Column(precision = 8, scale = 5)
+    @Column(precision = 5, scale = 3)
     private BigDecimal current;
 
     //전압
-    @Column(precision = 8, scale = 5)
+    @Column(precision = 5, scale = 3)
     private BigDecimal voltage;
 
     //모터 드라이버 속도
