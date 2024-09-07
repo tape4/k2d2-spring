@@ -27,9 +27,9 @@ public class SensorService {
         Sensor sensor = saveSensor(sensorValues, now);
         Photo photo = savePhoto(sensor.getId(), sensorValues.getUrl(), now);
 
-        if (isAccidentOccur(sensorValues.getUrl())) {
+//        if (isAccidentOccur(sensorValues.getUrl())) {
             saveAccidentPoints(AccidentPoints.from(sensor, now));
-        }
+//        }
 
         return photoRepository.save(photo);
     }
