@@ -55,9 +55,12 @@ public class SensorService {
     public Boolean isAccidentOccur(String url) {
         RestTemplate restTemplate = new RestTemplate();
         // 랜덤으로 세계 맥주에 대한 정보를 주는 url
-        String RequestUrl = "http://localhost:5000/detect?url=" + url;
+        String requestURL = "http://localhost:5000/detect?url=" + url;
 
-        IsAccidentOccurDto responseBody = restTemplate.getForObject(RequestUrl, IsAccidentOccurDto.class);
+        log.info("request to {}", requestURL);
+        IsAccidentOccurDto responseBody = restTemplate.getForObject(requestURL, IsAccidentOccurDto.class);
+
+        log.info("request [{}] Response {}", requestURL, responseBody.toString());
         return responseBody.getResult();
     }
 }

@@ -5,6 +5,7 @@ import lombok.*;
 @Getter
 @Builder
 @AllArgsConstructor
+@ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class IsAccidentOccurDto {
     Boolean result;
