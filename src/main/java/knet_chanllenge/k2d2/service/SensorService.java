@@ -55,7 +55,7 @@ public class SensorService {
     public Boolean isAccidentOccur(String url) {
         RestTemplate restTemplate = new RestTemplate();
         // 랜덤으로 세계 맥주에 대한 정보를 주는 url
-        String requestURL = "http://host.docker.internal:5000/detect?url=" + url;
+        String requestURL = "http://61.252.59.24:51821/detect?url=" + url;
 
         log.info("request to {}", requestURL);
         IsAccidentOccurDto responseBody = restTemplate.getForObject(requestURL, IsAccidentOccurDto.class);
