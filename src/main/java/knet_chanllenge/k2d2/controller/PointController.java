@@ -28,6 +28,7 @@ public class PointController {
             LocalDateTime requestTime) {
         PointsDto accidentPoints = pointService.getAccidentPoints(requestTime);
         log.info(accidentPoints.toString());
+        log.info("request-time : {}", requestTime);
         return ResponseEntity
                 .ok()
                 .body(accidentPoints);
