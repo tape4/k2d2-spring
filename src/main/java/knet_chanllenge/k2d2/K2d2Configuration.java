@@ -10,7 +10,7 @@ public class K2d2Configuration implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:3000")
+                .allowedOrigins("http://localhost:3000", "http://61.252.59.61:51821")
                 .allowedMethods("GET", "POST", "PATCH", "DELETE", "PUT")
                 .allowedHeaders("*")
                 .allowCredentials(true);
