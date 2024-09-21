@@ -59,7 +59,7 @@ public class SensorService {
 
     public Boolean isAccidentOccurSelf(Sensor values, LocalDateTime now) {
         Sensor lastValues = sensorRepository.findFirstByOrderByIdDesc();
-        if (lastValues != null && Duration.between(lastValues.getCreatedAt(), now).abs().toMinutes() < 30) return false;
+        if (lastValues == null || Duration.between(lastValues.getCreatedAt(), now).abs().toMinutes() > 3) return false;
 
         RestTemplate restTemplate = new RestTemplate();
         String requestURL = "http://61.252.59.24:51821/detect/self?gps1long=" + lastValues.getGpsLongitude() + "&gps1lat=" + lastValues.getGpsLatitude() +
