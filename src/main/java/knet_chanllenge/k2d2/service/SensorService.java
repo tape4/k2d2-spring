@@ -31,6 +31,10 @@ public class SensorService {
             saveAccidentPoints(AccidentPoints.from(sensor, now));
         }
 
+        if (isAccidentOccurSelf(sensor)) {
+            saveAccidentPoints(AccidentPoints.from(sensor, now));
+        }
+
         return photoRepository.save(photo);
     }
 
@@ -52,9 +56,22 @@ public class SensorService {
         return accidentPointsRepository.save(ap);
     }
 
+    public Boolean isAccidentOccurSelf(Sensor values) {
+        Sensor lastValues = sensorRepository.findFirstByOrderByIdDesc();
+        if (lastValues == null) return false;
+
+        RestTemplate restTemplate = new RestTemplate();
+        String requestURL = "http://61.252.59.24:51821/detect?gps1long=" + lastValues.getGpsLongitude() + "&gps1lat=" + lastValues.getGpsLatitude() +
+                "&gps2long=" + values.getGpsLongitude() + "&gps2lat=" + values.getGpsLatitude() + "&acc_x=" + values.getGyroAccelerationX() + "&gyro_z=" + values.getGyroRotationZ();
+
+        log.info("requestURL: " + requestURL);
+        IsAccidentOccurDto responseBody = restTemplate.getForObject(requestURL, IsAccidentOccurDto.class);
+        log.info("request [{}] Response {}", requestURL, responseBody.toString());
+        return responseBody.getResult();
+    }
+
     public Boolean isAccidentOccur(String url) {
         RestTemplate restTemplate = new RestTemplate();
-        // 랜덤으로 세계 맥주에 대한 정보를 주는 url
         String requestURL = "http://61.252.59.24:51821/detect?url=" + url;
 
         log.info("request to {}", requestURL);
