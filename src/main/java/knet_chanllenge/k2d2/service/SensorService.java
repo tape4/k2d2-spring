@@ -33,9 +33,9 @@ public class SensorService {
             saveAccidentPoints(AccidentPoints.from(sensor, now));
         }
 
-        if (isAccidentOccurSelf(sensor, lastValues, now)) {
-            saveAccidentPoints(AccidentPoints.from(sensor, now));
-        }
+//        if (isAccidentOccurSelf(sensor, lastValues, now)) {
+//            saveAccidentPoints(AccidentPoints.from(sensor, now));
+//        }
 
         return photoRepository.save(photo);
     }
