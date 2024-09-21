@@ -61,7 +61,7 @@ public class SensorService {
         if (lastValues == null) return false;
 
         RestTemplate restTemplate = new RestTemplate();
-        String requestURL = "http://61.252.59.24:51821/detect?gps1long=" + lastValues.getGpsLongitude() + "&gps1lat=" + lastValues.getGpsLatitude() +
+        String requestURL = "http://61.252.59.24:51821/detect/self?gps1long=" + lastValues.getGpsLongitude() + "&gps1lat=" + lastValues.getGpsLatitude() +
                 "&gps2long=" + values.getGpsLongitude() + "&gps2lat=" + values.getGpsLatitude() + "&acc_x=" + values.getGyroAccelerationX() + "&gyro_z=" + values.getGyroRotationZ();
 
         log.info("requestURL: " + requestURL);
