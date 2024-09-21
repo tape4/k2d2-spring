@@ -25,6 +25,7 @@ public class SensorService {
     @Transactional
     public Photo save(SensorValues sensorValues) {
         LocalDateTime now = sensorValues.getCreatedAt();
+        Sensor lastValues = sensorRepository.findFirstByOrderByIdDesc();
         Sensor sensor = saveSensor(sensorValues, now);
         Photo photo = savePhoto(sensor.getId(), sensorValues.getUrl(), now);
 
@@ -32,7 +33,7 @@ public class SensorService {
             saveAccidentPoints(AccidentPoints.from(sensor, now));
         }
 
-        if (isAccidentOccurSelf(sensor, now)) {
+        if (isAccidentOccurSelf(sensor, lastValues, now)) {
             saveAccidentPoints(AccidentPoints.from(sensor, now));
         }
 
@@ -57,9 +58,10 @@ public class SensorService {
         return accidentPointsRepository.save(ap);
     }
 
-    public Boolean isAccidentOccurSelf(Sensor values, LocalDateTime now) {
-        Sensor lastValues = sensorRepository.findFirstByOrderByIdDesc();
+    public Boolean isAccidentOccurSelf(Sensor values, Sensor lastValues, LocalDateTime now) {
         if (lastValues == null || Duration.between(lastValues.getCreatedAt(), now).abs().toMinutes() > 3) return false;
+        log.info("last Values: {}", lastValues);
+        log.info("current Values: {}", values);
 
         RestTemplate restTemplate = new RestTemplate();
         String requestURL = "http://61.252.59.24:51821/detect/self?gps1long=" + lastValues.getGpsLongitude() + "&gps1lat=" + lastValues.getGpsLatitude() +
