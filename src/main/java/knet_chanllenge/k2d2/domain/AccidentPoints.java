@@ -34,4 +34,13 @@ public class AccidentPoints {
                 .createdAt(now)
                 .build();
     }
+
+    public static AccidentPoints from(Sensor sensor) {
+        return AccidentPoints.builder()
+                .id(sensor.getId())
+                .gpsLatitude(sensor.getGpsLatitude())
+                .gpsLongitude(sensor.getGpsLongitude())
+                .createdAt(sensor.getCreatedAt())
+                .build();
+    }
 }
